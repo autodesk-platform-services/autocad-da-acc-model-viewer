@@ -74,7 +74,7 @@ D:\LMV\Collaboration\House.collaboration
 
 The `.collaboration` file can be uploaded to Viewer or ACC
 
-- NOTE: Alternatively, you can execute `runlocal.bat` 
+- NOTE: Alternatively, you can execute [runlocal.bat](https://git.autodesk.com/moogalm/autocad-da-acc-model-viewer/blob/main/CLBPlugin/runlocal.bat)
 
 ### Web App Setup
 
