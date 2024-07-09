@@ -19,6 +19,77 @@ Refer [Supported Translation](https://aps.autodesk.com/en/docs/model-derivative/
 
 ![aps-acc-da-flow](https://media.git.autodesk.com/user/3836/files/f624019d-5184-4ef9-9fd1-f4b0d603a680)
 
+## Workflow Summary
+
+**Objective**: Extract data from a solid entity in an AutoCAD drawing, remove built-in properties, and add custom properties.
+
+1. **Setup**
+   
+   - Initialize necessary variables and constants.
+   - Register a custom application name ("CARBON_NEGATIVE").
+
+2. **Find Solid Entity**
+   
+   - Open the current document.
+   - Retrieve the solid entity by its handle ("14A37").
+   - If the entity is not found, log a message and exit.
+
+3. **Transaction Management**
+   
+   - Start a transaction to modify the drawing database.
+   - Open the block table and block table record.
+   - Check and register the application in the `RegAppTable`.
+
+4. **Add Custom Properties**
+   
+   - Check if the solid entity already has custom properties.
+   - If not, add custom XData properties to the solid entity.
+
+5. **Load and Hook Events**
+   
+   - Load `LMVExport.crx` for exporting.
+   - Hook the `EndExtraction` event.
+
+6. **Prepare for Extraction**
+   
+   - Set the current working directory.
+   - Determine the output collaboration file path.
+
+7. **Run Export Command**
+   
+   - Check if running in Design Automation environment.
+   - Load the `filter.json` file for property extraction.
+   - Run the `LMVEXPORT` command to extract properties based on the filter.
+
+8. **Create Collaboration Package**
+   
+   - Load `AcShareViewPropsCore.dll`.
+   - Create a collaboration package using `_CREATESIMPLESHAREPACKAGE`.
+
+9. **Unhook Events**
+   
+   - Unhook the `EndExtraction` event.
+
+10. **Handle Extraction End Event**
+    
+    - Log the end of the extraction process.
+    - Start a new transaction to read the entity.
+    - Add additional custom properties to the solid entity.
+
+#### Example JSON Filter
+
+```json
+{
+  "AcDbObject": [
+    null,
+    "Handle"
+  ]
+}
+
+```
+
+This JSON filter specifies that only the `Handle` property should be extracted from the solid entity.
+
 
 ## Workflow Demo
 
