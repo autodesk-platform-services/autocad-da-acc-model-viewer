@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>LMVExtractor</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CLBPlugin</RootNamespace>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <Platforms>x64</Platforms>
+    <BaseOutputPath>bin\</BaseOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="output\**" />
+    <EmbeddedResource Remove="output\**" />
+    <None Remove="output\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoCAD.NET.Core" Version="25.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AcDbMgd">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="accoremgd">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+        <BundleFiles Include="$(TargetDir)\**\*" />       
+    </ItemGroup>
+    <Copy SourceFiles="@(BundleFiles)" DestinationFolder="$(ProjectDir)Bundle\$(ProjectName).bundle\Contents\" />
+    <ZipDirectory SourceDirectory="$(ProjectDir)Bundle" DestinationFile="..\aps-acc-da\App_Data\LMVExtractor.bundle.zip" Overwrite="true" />
+    <Exec Command="tar -tvf &quot;..\aps-acc-da\App_Data\LMVExtractor.bundle.zip&quot;" />
+  </Target>
+</Project>

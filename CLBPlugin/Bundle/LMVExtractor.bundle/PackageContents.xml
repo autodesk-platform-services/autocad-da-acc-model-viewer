@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationPackage SchemaVersion="1.0" Version="1.0" ProductCode="{92DAE142-1B21-4731-9CFA-15AC46F34635}" Name="LMVExtractor.bundle" Description="Exporting AutoCAD 3D to Colloboration format" Author="Madhukar Moogala">
+    <CompanyDetails Name="Autodesk, Inc" Url="http://tutorials.autodesk.io" Email="aps.help@autodesk.com"/>
+    <Components>
+        <RuntimeRequirements OS="Win64" SeriesMin="R25.0" SeriesMax="R25.0"/>
+        <ComponentEntry AppName="LMVExtractor.bundle" ModuleName="./Contents/LMVExtractor.dll" AppDescription="Exporting AutoCAD 3D to Colloboration format" LoadOnCommandInvocation="True" LoadOnAutoCADStartup="False">
+            <Commands GroupName="EXTRACTDATA">
+                <Command Global="EXTRACTDATA" Local="EXTRACTDATA"/>
+            </Commands>
+        </ComponentEntry>
+    </Components>
+</ApplicationPackage>

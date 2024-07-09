@@ -1,0 +1,169 @@
+/* Reset margins and paddings for body and html, set height and default font */
+body, html {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100vh; /* Full viewport height */
+    font-family: ArtifaktElement; /* Set default font */
+}
+
+/* Set position for header, sidebar, and preview */
+#header, #sidebar, #preview {
+    position: absolute; /* Position absolutely within the container */
+}
+
+/* Header styling */
+#header {
+    height: 3em; /* Header height */
+    width: 100%; /* Full width */
+    display: flex; /* Use flexbox for layout */
+    flex-flow: row nowrap; /* Row layout with no wrapping */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center items vertically */
+}
+
+/* Sidebar styling */
+#sidebar {
+    width: 25%; /* Sidebar width */
+    left: 0; /* Align to the left */
+    top: 3em; /* Position below the header */
+    bottom: 0; /* Extend to the bottom */
+    display: flex; /* Make sidebar a flex container */
+    flex-direction: column; /* Stack elements vertically */
+}
+
+/* Preview styling */
+#preview {
+    width: 75%; /* Preview area width */
+    right: 0; /* Align to the right */
+    top: 3em; /* Position below the header */
+    bottom: 0; /* Extend to the bottom */
+}
+
+/* Header child elements styling */
+#header > * {
+    height: 2em; /* Set height for children */
+    margin: 0 0.5em; /* Horizontal margin */
+}
+
+/* Login button styling */
+#login {
+    font-family: ArtifaktElement; /* Set font */
+    font-size: 1em; /* Font size */
+}
+
+/* Title in header styling */
+#header .title {
+    height: auto; /* Auto height */
+    margin-right: auto; /* Push title to the left */
+}
+
+/* Tree styling */
+#tree {
+    margin: 0.5em; /* Margin around tree */
+    flex: 7; /* Set tree to take 70% of the sidebar space */
+}
+
+/* Work item container styling */
+#workitem {
+    flex: 1; /* Set workitem to take 10% of the sidebar space */
+    display: flex; /* Make workitem a flex container */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-end; /* Align content to the bottom */
+    padding: 0.5em; /* Padding for separation */
+}
+
+/* Log section styling */
+#log {
+    margin: 0.5em; /* Margin around log */
+    flex: 2; /* Set log to take 20% of the sidebar space */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Bubble notification styling */
+.bubble-notification {
+    position: absolute; /* Position absolutely within the container */
+    background-color: #ffeb3b; /* Yellow background color */
+    color: #000; /* Black text color */
+    padding: 5px 10px; /* Padding inside the notification */
+    border-radius: 5px; /* Rounded corners */
+    z-index: 1000; /* Ensure on top of other elements */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+/* Log entry styling */
+.log-entry {
+    border-top: 1px dashed #C0C0C0; /* Dashed top border */
+    font-family: Consolas, monospace; /* Monospaced font */
+    font-size: 18px; /* Font size */
+    color: white; /* Text color */
+    padding: 5px; /* Padding for spacing */
+}
+
+/* Output log styling */
+#outputlog {
+    top: calc(3em + 100vh - 120px); /* Same top position as preview */
+    height: 100%; /* Full height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: block; /* Display as block element */
+}
+
+#copyButton {
+
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    padding: 0.5em 1em; /* Padding inside the button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Submit button styling */
+#submit {
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    padding: 0.5em 1em; /* Padding inside the button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%; /* Full width on small screens */
+        top: 3em; /* Position below the header */
+        bottom: 75%; /* Set bottom position */
+    }
+
+    #preview {
+        width: 100%; /* Full width on small screens */
+        top: 25%; /* Set top position */
+        bottom: 0; /* Extend to the bottom */
+    }
+}
+
+/* Icon styling using pseudo-elements */
+.icon-hub:before {
+    background-image: url(https://raw.githubusercontent.com/primer/octicons/main/icons/apps-16.svg); /* Icon image */
+    background-size: cover; /* Cover the entire element */
+}
+
+.icon-project:before {
+    background-image: url(https://raw.githubusercontent.com/primer/octicons/main/icons/project-16.svg); /* Icon image */
+    background-size: cover; /* Cover the entire element */
+}
+
+.icon-my-folder:before {
+    background-image: url(https://raw.githubusercontent.com/primer/octicons/main/icons/file-directory-16.svg); /* Icon image */
+    background-size: cover; /* Cover the entire element */
+}
+
+.icon-item:before {
+    background-image: url(https://raw.githubusercontent.com/primer/octicons/main/icons/file-16.svg); /* Icon image */
+    background-size: cover; /* Cover the entire element */
+}
+
+.icon-version:before {
+    background-image: url(https://raw.githubusercontent.com/primer/octicons/main/icons/clock-16.svg); /* Icon image */
+    background-size: cover; /* Cover the entire element */
+}

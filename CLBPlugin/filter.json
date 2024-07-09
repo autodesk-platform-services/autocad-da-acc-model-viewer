@@ -1,0 +1,36 @@
+{
+  "AcDbObject": [
+    null, // "Annotative"
+    "Handle"
+  ],
+  "AcDbEntity": [
+    null, // Annotation Scale
+    null, // "Color"
+    null, // "Layer"
+    null, // "LineWeight"
+    null, // "LinetypeId"
+    null, // "LinetypeScale"
+    null, // "MaterialId"
+    null, // "PlotStyleName"
+    null, // "ShadowDisplay"
+    null // "Transparency"
+  ],
+  "AcDb3dSolid": [
+    null, // "RecordHistory"
+    null, // "ShowHistory"
+    null // "SolidType"
+  ],
+  "AcDbBlockReference": [
+    null, //"BlockTableRecord/Name",
+    null, // "BlockTableRecord/UnitFactor"
+    null, //"BlockTableRecord/Units",
+    null, //"BlockTableRecord/UnitsFactor",
+    null, // "LayerPropertyOverrides"
+    null, // "MatchOrientationToLayout"
+    null, // "Rotation"
+    null, // "ScaleFactors/UniformScale"
+    null, // "ScaleFactors/X"
+    null, // "ScaleFactors/Y"
+    null // "ScaleFactors/Z"
+  ]
+}

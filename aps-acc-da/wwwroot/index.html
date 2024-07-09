@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://cdn.autodesk.io/favicon.ico">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/inspire-tree-dom@4.0.6/dist/inspire-tree-light.min.css">
+    <link rel="stylesheet" href="/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+    <title>Generating Collaboration Files in AutoCAD with Design Automation for ACC Viewing</title>
+</head>
+
+<body>
+    <div id="header">
+        <img class="logo" src="https://cdn.autodesk.io/logo/black/stacked.png" alt="Autodesk Platform Services">
+        <span class="title">
+            Generating Collaboration Files in AutoCAD with Design Automation for ACC Viewing
+        </span>
+        <button id="login" style="visibility: hidden;">Login</button>
+    </div>
+    <div id="sidebar">
+        <div id="tree"></div>
+        <div id="workitem">
+            <button id="submit" style="visibility:hidden;" type="submit">Submit</button>
+        </div>
+        <div id="log" style="visibility:hidden">
+            <button id="copyButton">Copy</button>
+            <pre id="outputlog" style="background-color: #282828; color: #E9FAFC;">               
+            </pre>
+        </div>
+    </div>
+    <div id="preview"></div>
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://unpkg.com/inspire-tree@4.3.1/dist/inspire-tree.js"></script>
+    <script src="https://unpkg.com/inspire-tree-dom@4.0.6/dist/inspire-tree-dom.min.js"></script>    
+    <script src="./main.js" type="module"></script>
+    <script type="module">
+        // Call the function when DOM is loaded
+        import { startConnection } from './apsda.js';
+        document.addEventListener("DOMContentLoaded", (event) => {
+            startConnection();
+        },
+            false
+        );
+    </script>
+</body>
+</html>
