@@ -16,9 +16,14 @@ Refer [Supported Translation](https://aps.autodesk.com/en/docs/model-derivative/
 
 ## Workflow Design
 
+![aps-acc-da-flow](https://media.git.autodesk.com/user/3836/files/f624019d-5184-4ef9-9fd1-f4b0d603a680)
 
 
 ## Workflow Demo
+
+
+
+https://media.git.autodesk.com/user/3836/files/c6af784c-ddec-47e8-93f0-cca1cc96c30f
 
 
 
@@ -170,6 +175,8 @@ info: Microsoft.Hosting.Lifetime[0]
   
   - Right-click on your project in the Solution Explorer.
   - Select **Add** > **New Item**.
+  <img width="692" alt="appsettings user" src="https://media.git.autodesk.com/user/3836/files/6af3d6df-3593-4209-8597-b5a5a9d6df85">
+
 
 - **Choose JSON File Template**:
   
@@ -274,6 +281,10 @@ dotnet build
 runlocal.bat
 ```
 
+https://media.git.autodesk.com/user/3836/files/0c1cb5b4-b2d6-42c2-84fd-9e3c1870c79d
+
+
+
 ## Use Case
 
 - **Open the Browser:**
@@ -308,7 +319,7 @@ runlocal.bat
 
 ## License
 
-MIT License
+[MIT License](https://git.autodesk.com/moogalm/autocad-da-acc-model-viewer/blob/main/LICENSE)
 
 ## Written By
 
