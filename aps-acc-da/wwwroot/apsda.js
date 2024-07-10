@@ -1,26 +1,31 @@
 ﻿import { folderDetails } from './sidebar.js';
 
+function showSpinner() {
+    document.getElementById('spinner').style.display = 'flex';
+}
+
+// Function to hide the spinner
+function hideSpinner() {
+    document.getElementById('spinner').style.display = 'none';
+}
 function showNotification(message, nodeId) {
     // Remove any existing notifications
-    document.querySelectorAll('.bubble-notification').forEach(notification => notification.remove());
-
-    // Create a new notification
-    const bubble = document.createElement('div');
-    bubble.className = 'bubble-notification';
-    bubble.textContent = message;
-
+    document.querySelectorAll('.bubble-notification').forEach(notification => notification.remove());  
     // Find the DOM element of the tree node and append the bubble
     const nodeElement = document.querySelector(`[data-uid="${nodeId}"]`);
     if (nodeElement) {
-        nodeElement.appendChild(bubble);
-
+        // Create a new notification
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble-notification';
+        bubble.textContent = message;      
         // Position the bubble
         const rect = nodeElement.getBoundingClientRect();
         bubble.style.top = `${rect.top - 30}px`;
         bubble.style.left = `${rect.left}px`;
-
+        // Append the bubble to the body
+        document.body.appendChild(bubble);
         // Remove the bubble after a few seconds
-        setTimeout(() => bubble.remove(), 3000);
+        setTimeout(() => bubble.remove(), 5000);
     } else {
         console.error(`Node element with ID ${nodeId} not found.`);
     }
@@ -40,9 +45,11 @@ export async function startConnection(onReady) {
     });
 
     connection.on("onSuccess", (message) => {
+        hideSpinner();
         const folderInfo = folderDetails.getFolderInfo();
         if (folderInfo && folderInfo.nodeId) {
-            showNotification("Collaboration File Created!!", folderInfo.nodeId);
+            showNotification(message, folderInfo.nodeId);
+            writeLog(message);
         } else {
             console.error("Folder info or nodeId not available.");
         }
@@ -78,7 +85,7 @@ export const startWorkitem = async () => {
             }));
 
             writeLog("Sending selected folder to DA server to place the Collaboration item");
-
+            showSpinner();
             const response = await fetch("api/da/workitems", {
                 method: "POST",
                 body: formData,

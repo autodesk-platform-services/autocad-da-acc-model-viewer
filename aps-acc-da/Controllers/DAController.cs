@@ -212,13 +212,42 @@ public class DAController(IHubContext<DAController.DesignAutomationHub> hubConte
 
             // Check if the work item was successful
             if (workItemStatus.Status == Autodesk.Forge.DesignAutomation.Model.Status.Success)
+            
             {
-                // Create a new item version using the storage ID and tokens
-                var itemId = await _aps.CreateItemVersion(projectId, folderId, storageId, tokens);
 
-                // Notify the client of the successful completion
-                await _hubContext.Clients.Client(browserConnectionId).SendAsync("onSuccess", itemId);
+                bool itemExists = false;
+                // Check if the item already exists in the folder
+                var folderContents = await _aps.GetFolderContents(projectId, folderId, tokens);
+                var itemId = string.Empty;
+                foreach (var item in folderContents)
+                {
+                    if (item.Type.Equals("items") &&
+                        item.Attributes.DisplayName.Equals("House.collaboration"))
+                    {
+                        itemExists = true;
+                        itemId = item.Id;
+                        break;
+                    }
+                }
+                if(itemExists)
+                {
+                    // Update the existing item version
+                    var  versionId = await _aps.UpdateItemVersion(projectId, folderId, storageId, itemId, tokens);
+                    // Notify the client of the successful completion
+                    var msg = $"Collaboration exists, a new {versionId} is created";
+                    await _hubContext.Clients.Client(browserConnectionId).SendAsync("onSuccess", msg);
+                }
+                else
+                {
+                    // Create a new item version using the storage ID and tokens
+                    itemId = await _aps.CreateItemVersion(projectId, folderId, storageId, tokens);
+                    // Notify the client of the successful completion
+                    var msg = $"Collaboration file created with ID: {itemId}";
+                    await _hubContext.Clients.Client(browserConnectionId).SendAsync("onSuccess", msg);
+                }
+               
             }
+            await _hubContext.Clients.Client(browserConnectionId).SendAsync("onComplete", "Done!!");
         }
         catch (Exception ex)
         {

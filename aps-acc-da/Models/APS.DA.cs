@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using Autodesk.Oss.Model;
+using static APS;
 
 public partial class APS
 {
@@ -27,6 +28,77 @@ public partial class APS
         return createdItem.Data.Id;
     }
 
+    public async Task<string> UpdateItemVersion(string projectId, string folderId, string storageId, string itemId,Tokens tokens)
+    {
+        var dataManageClient = new DataManagementClient(_sdkManager);
+        VersionPayload versionPayload = new VersionPayload()
+        {
+            Jsonapi = new ModifyFolderPayloadJsonapi()
+            {
+                _Version = VersionNumber._10
+            },
+            Data = new VersionPayloadData()
+            {
+                Type = Autodesk.DataManagement.Model.Type.Versions,
+                Attributes = new VersionPayloadDataAttributes()
+                {
+                    Name = "House.collaboration",
+                    Extension = new RelationshipRefsPayloadDataMetaExtension()
+                    {
+                        Type = projectId.StartsWith("b.") 
+                        ? Autodesk.DataManagement.Model.Type.VersionsautodeskBim360File
+                        : Autodesk.DataManagement.Model.Type.VersionsautodeskCoreFile,
+                        _Version = VersionNumber._10
+                    }
+                },
+                Relationships = new VersionPayloadDataRelationships()
+                {
+                    Item = new FolderPayloadDataRelationshipsParent()
+                    {
+                        Data = new FolderPayloadDataRelationshipsParentData()
+                        {
+                            Type = Autodesk.DataManagement.Model.Type.Items,
+                            Id = itemId
+                        }
+                    },
+                    Storage = new FolderPayloadDataRelationshipsParent()
+                    {
+                        Data = new FolderPayloadDataRelationshipsParentData()
+                        {
+                            Type = Autodesk.DataManagement.Model.Type.Objects,
+                            Id = storageId
+                        }
+                    }
+                }
+            }
+        };
+        try
+        {
+            ModelVersion createdVersion = await dataManageClient.CreateVersionAsync(projectId: projectId, versionPayload: versionPayload, accessToken: tokens.InternalToken);
+            return createdVersion.Data.Id;
+        }
+        catch (DataManagementApiException ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }       
+       
+    }
+
+
+    public async Task<string> GetItemId(string projectId, string folderId, Tokens tokens)
+    {
+        var dataManagementClient = new DataManagementClient(_sdkManager);
+        var contents = await dataManagementClient.GetFolderContentsAsync(projectId, folderId, accessToken: tokens.InternalToken);
+        foreach (var content in contents.Data)
+        {
+            if (content.Attributes.DisplayName == "House.collaboration" && content.Type == Autodesk.DataManagement.Model.Type.Items.ToString() )
+            {
+                return content.Id;
+            }
+        }
+        return string.Empty;
+    }
     /// <summary>
     /// Retrieves the storage ID for a specific hub, project, and folder using the provided tokens.
     /// </summary>
@@ -40,11 +112,10 @@ public partial class APS
     {
         try
         {
-            var dataManagementClient = new DataManagementClient(_sdkManager);
+            var dataManagementClient = new DataManagementClient(_sdkManager);            
             var storagePayload = CreateStoragePayload(folderId);
-            var storage = await dataManagementClient.CreateStorageAsync(projectId, null, storagePayload: storagePayload, tokens.InternalToken);
+            var storage = await dataManagementClient.CreateStorageAsync(projectId, null, storagePayload: storagePayload, accessToken:tokens.InternalToken);
             Console.WriteLine($"Storage: {storage}");
-
             return storage.Data.Id;
         }
         catch (Exception ex)

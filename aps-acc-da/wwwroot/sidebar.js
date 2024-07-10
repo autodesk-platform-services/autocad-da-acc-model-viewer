@@ -45,7 +45,7 @@ export function initTree(selector, onSelectionChanged) {
     
     // See http://inspire-tree.com
     const tree = new InspireTree({
-        data: function (node) {
+    data: function (node) {
             if (!node || !node.id) {
                 return getHubs();
             } else {
@@ -59,7 +59,14 @@ export function initTree(selector, onSelectionChanged) {
                 }
             }
         }
-    });
+    });   
+  
+    tree.on('node.expanded', function (node, evt) {
+        if (node === undefined) return;       
+        if (_.isArrayLike(node.children)) {
+            node.children = true; //force to reload the children
+        }
+        });
     tree.on('node.click', function (event, node) {
         event.preventTreeDefault();
         const tokens = node.id.split('|');
@@ -71,5 +78,7 @@ export function initTree(selector, onSelectionChanged) {
         }
     });
     return new InspireTreeDOM(tree, { target: selector });
+
+
 }
 export { folderDetails };   

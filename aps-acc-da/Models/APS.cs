@@ -20,7 +20,7 @@ public partial class APS
     private readonly string _clientSecret;
     private readonly string _callbackUri;
     private readonly string _bucket;
-    private readonly List<Scopes> InternalTokenScopes = new List<Scopes> { Scopes.DataRead, Scopes.DataCreate, Scopes.BucketRead, Scopes.BucketCreate,Scopes.BucketDelete, Scopes.BucketUpdate, Scopes.ViewablesRead};
+    private readonly List<Scopes> InternalTokenScopes = new List<Scopes> { Scopes.DataRead, Scopes.DataCreate, Scopes.DataSearch, Scopes.DataWrite,Scopes.BucketRead, Scopes.BucketCreate,Scopes.BucketDelete, Scopes.BucketUpdate, Scopes.ViewablesRead};
     private readonly List<Scopes> PublicTokenScopes = new List<Scopes> { Scopes.ViewablesRead };
 
     public APS(string clientId, string clientSecret, string bucket, string callbackUri)

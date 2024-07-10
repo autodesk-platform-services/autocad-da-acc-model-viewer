@@ -32,11 +32,32 @@ body, html {
 }
 
 /* Preview styling */
+
 #preview {
     width: 75%; /* Preview area width */
     right: 0; /* Align to the right */
     top: 3em; /* Position below the header */
     bottom: 0; /* Extend to the bottom */
+    position: absolute; /* Ensure it is positioned relative to its parent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#spinner {
+    display: none; /* Initially hidden */
+    width: 40%; /* Spinner takes up 40% of the div's width */
+    height: 40%; /* Spinner takes up 40% of the div's height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Position within the preview div */
+    z-index: 1000; /* Ensure it is on top */
+}
+
+#spinner img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 /* Header child elements styling */
@@ -82,8 +103,8 @@ body, html {
 /* Bubble notification styling */
 .bubble-notification {
     position: absolute; /* Position absolutely within the container */
-    background-color: #ffeb3b; /* Yellow background color */
-    color: #000; /* Black text color */
+    background-color: #5f60ff; /* Iris background color */
+    color: white; /* text color */
     padding: 5px 10px; /* Padding inside the notification */
     border-radius: 5px; /* Rounded corners */
     z-index: 1000; /* Ensure on top of other elements */
@@ -108,8 +129,7 @@ body, html {
 }
 
 #copyButton {
-
-    background-color: #007bff; /* Blue background color */
+    background-color: #5f60ff; /* Blue background color */
     color: white; /* White text color */
     padding: 0.5em 1em; /* Padding inside the button */
     border: none; /* Remove border */
@@ -119,7 +139,7 @@ body, html {
 
 /* Submit button styling */
 #submit {
-    background-color: #007bff; /* Blue background color */
+    background-color: #5f60ff; /* Blue background color */
     color: white; /* White text color */
     padding: 0.5em 1em; /* Padding inside the button */
     border: none; /* Remove border */
