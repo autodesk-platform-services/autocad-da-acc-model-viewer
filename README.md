@@ -1,5 +1,11 @@
 # Generating Collaboration Files in AutoCAD with Design Automation for ACC Viewing
 
+## Objective
+
+This sample enables the creation of custom geometry with custom property metadata, fully supported by ACC (Autodesk Construction Cloud) and BIM360. It empowers developers by providing access to the AutoCAD geometry engine through the Design Automation API.
+
+![customprops](https://media.git.autodesk.com/user/3836/files/4db3bff6-b0b1-46a1-8f89-5bd7ef4b1a18)
+
 ### Using Design Automation for AutoCAD
 Design Automation for AutoCAD allows you to generate a collaboration file containing various viewable assets. This file, recognizable by any LMV-based application, can be hosted on Autodesk Construction Cloud for model viewing.
 
