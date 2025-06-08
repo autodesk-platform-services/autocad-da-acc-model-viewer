@@ -134,30 +134,30 @@ public class DAController(IHubContext<DAController.DesignAutomationHub> hubConte
         {
             ActivityId = activityId,
             Arguments = new Dictionary<string, IArgument>
-        {
             {
-                "inputFile", new XrefTreeArgument
                 {
-                    Url = inputObjectId,
-                    Verb = Verb.Get,
-                    Headers = new Dictionary<string, string>
+                    "inputFile", new XrefTreeArgument
                     {
-                        { "Authorization", bearerToken1 }
+                        Url = inputObjectId,
+                        Verb = Verb.Get,
+                        Headers = new Dictionary<string, string>
+                        {
+                            { "Authorization", bearerToken1 }
+                        }
                     }
-                }
-            },
-            {
-                "collaboration", new XrefTreeArgument
+                },
                 {
-                    Verb = Verb.Put,
-                    Url = outputObjectId,
-                    Headers = new Dictionary<string, string>
+                    "collaboration", new XrefTreeArgument
                     {
-                        { "Authorization", bearerToken2 }
+                        Verb = Verb.Put,
+                        Url = outputObjectId,
+                        Headers = new Dictionary<string, string>
+                        {
+                            { "Authorization", bearerToken2 }
+                        }
                     }
                 }
             }
-        }
         };
 
         // Create the work item asynchronously

@@ -4,14 +4,15 @@
 
 This sample enables the creation of custom geometry with custom property metadata, fully supported by ACC (Autodesk Construction Cloud) and BIM360. It empowers developers by providing access to the AutoCAD geometry engine through the Design Automation API.
 
-![customprops](https://media.git.autodesk.com/user/3836/files/4db3bff6-b0b1-46a1-8f89-5bd7ef4b1a18)
+![Working Demo](working-demo-screenshot.jpg)
 
 ### Using Design Automation for AutoCAD
+
 Design Automation for AutoCAD allows you to generate a collaboration file containing various viewable assets. This file, recognizable by any LMV-based application, can be hosted on Autodesk Construction Cloud for model viewing.
 
 The Model Derivative API translates over 60 file formats into derivatives (output files), including the collaboration format. While the AutoCAD API directly generates collaboration files from 3D drawings, the Design Automation service's API offers greater flexibility. It allows you to not only generate these files but also manipulate the properties of the 3D model within them.
 
-This project focuses on removing generic properties associated with the 3D model. We retain only basic model objects with identifying properties like Name and `Handle` ID. This is achieved by parsing [filter.json](https://git.autodesk.com/moogalm/autocad-da-acc-model-viewer/blob/main/CLBPlugin/filter.json), which contains a list of properties to be extracted.
+This project focuses on removing generic properties associated with the 3D model. We retain only basic model objects with identifying properties like Name and `Handle` ID. This is achieved by parsing [filter.json](https://github.com/autodesk-platform-services/autocad-da-acc-model-viewer/blob/main/CLBPlugin/filter.json), which contains a list of properties to be extracted.
 
 `Handles` are unique identifiers within a single AutoCAD DWG database. They are 64-bit integers introduced before AutoCAD R13 and persist across sessions. However, handles are not unique across different databases. Since all databases start with the same initial handle value, duplication is almost guaranteed.
 
@@ -19,11 +20,9 @@ Refer [Supported Translation](https://aps.autodesk.com/en/docs/model-derivative/
 | COLLABORATION | SVF<br>SVF2<br>Thumbnail |
 | :------------- | :------------------------------ |
 
-
-
 ## Workflow Design
 
-![aps-acc-da-flow](https://media.git.autodesk.com/user/3836/files/f624019d-5184-4ef9-9fd1-f4b0d603a680)
+![APS ACC DA Workflow](workflow.png)
 
 ## Workflow Summary
 
@@ -91,19 +90,13 @@ Refer [Supported Translation](https://aps.autodesk.com/en/docs/model-derivative/
     "Handle"
   ]
 }
-
 ```
 
 This JSON filter specifies that only the `Handle` property should be extracted from the solid entity.
 
-
 ## Workflow Demo
 
-
-
-https://media.git.autodesk.com/user/3836/files/c6af784c-ddec-47e8-93f0-cca1cc96c30f
-
-
+[![aps-acc-da-demo](aps-acc-da-demo.mp4)](aps-acc-da-demo.mp4)
 
 ## How to Generate a `.collaboration` File from local AcCoreConsole instance.
 
@@ -253,8 +246,8 @@ info: Microsoft.Hosting.Lifetime[0]
   
   - Right-click on your project in the Solution Explorer.
   - Select **Add** > **New Item**.
-  <img width="692" alt="appsettings user" src="https://media.git.autodesk.com/user/3836/files/6af3d6df-3593-4209-8597-b5a5a9d6df85">
-
+    
+   <img width="692" alt="appsettings user" src="appsettings.user.json.png">
 
 - **Choose JSON File Template**:
   
@@ -359,9 +352,7 @@ dotnet build
 runlocal.bat
 ```
 
-https://media.git.autodesk.com/user/3836/files/0c1cb5b4-b2d6-42c2-84fd-9e3c1870c79d
-
-
+[![clbplugin-local](clbplugin-local.mp4)](clbplugin-local.mp4)
 
 ## Use Case
 
