@@ -1,8 +1,8 @@
-# Generating Collaboration Files in AutoCAD with Design Automation for ACC Viewing
+# Generating Collaboration Files in AutoCAD with Design Automation for Forma Viewing
 
 ## Objective
 
-This sample enables the creation of custom geometry with custom property metadata, fully supported by ACC (Autodesk Construction Cloud) and BIM360. It empowers developers by providing access to the AutoCAD geometry engine through the Design Automation API.
+This sample enables the creation of custom geometry with custom property metadata, fully supported by Autodesk Forma and BIM360. It empowers developers by providing access to the AutoCAD geometry engine through the Design Automation API.
 
 ![Working Demo](working-demo-screenshot.jpg)
 
@@ -143,7 +143,7 @@ D:\LMV\Collaboration\House.collaboration
 
 ### Upload
 
-The `.collaboration` file can be uploaded to Viewer or ACC
+The `.collaboration` file can be uploaded to Viewer or Autodesk Forma
 
 - NOTE: Alternatively, you can execute [runlocal.bat](https://git.autodesk.com/moogalm/autocad-da-acc-model-viewer/blob/main/CLBPlugin/runlocal.bat)
 
@@ -153,7 +153,7 @@ The `.collaboration` file can be uploaded to Viewer or ACC
 
 1. **APS Account**: Learn how to create a APS Account, activate your subscription, and create an app at [this tutorial](http://aps.autodesk.com/tutorials/#/account/).
 2. Add a callback url : `http://localhost:8080/api/auth/callback`
-3. **ACC Account**: must be Account Admin to add the app integration. [Learn about provisioning](https://aps.autodesk.com/en/docs/bim360/v1/tutorials/getting-started/manage-access-to-docs/).
+3. **Autodesk Forma Account**: must be Hub Admin to add the app integration. [Learn about provisioning](https://aps.autodesk.com/en/docs/bim360/v1/tutorials/getting-started/manage-access-to-docs/).
 4. **Visual Studio**: Either Community 2022 (Windows) or Code (Windows, MacOS).
 5. **.NET 8.0** basic knowledge with C#
 6. **JavaScript** basic knowledge.
